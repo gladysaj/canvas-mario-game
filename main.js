@@ -55,20 +55,25 @@ class Mario{
       this.imagen = this.imagen1
       this.x = 10;
       this.y = 295;
-      this.width = 60;
-      this.height = 80;
+      this.width = 30;
+      this.height = 40;
   }
   
+  collision(item){
+    return (this.x < item.x + item.width) &&
+        (this.x + this.width > item.x) &&
+        (this.y < item.y + item.height) &&
+        (this.y + this.height > item.y);
+  }
+
   draw(){
     if(this.y < 295) this.y += 4;
     if(frames % 10 === 0){
          this.imagen = this.imagen == this.imagen1 ? this.imagen2 : this.imagen1;
     }
-    ctx.drawImage(this.imagen, this.x, this.y, this.width,this.height);
+    ctx.drawImage(this.imagen, this.x, this.y, this.width, this.height);
 }
 }
-
-
 
   /*draw(){
     if(frames % 10  === 0){
@@ -187,9 +192,15 @@ function generateEnemies() {
 function drawingEnemies(){
   enemies.forEach(function(enemy){
       enemy.draw()
-      // Checaremos colisiones más adelante
-  })
+      // Checar colisiones
+      if(marioPerez.collision(enemy)){
+        
+        // Ejecutaremos el gameOver
+        console.log("GameOver") 
+    }
+})
 }
+ 
 
 setInterval(function(){
   // sumamos cada cuadro que dibujamos
@@ -203,3 +214,5 @@ setInterval(function(){
   generateEnemies();
   drawingEnemies();
 }, 1000/60)
+
+//Collitions
