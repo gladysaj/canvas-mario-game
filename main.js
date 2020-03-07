@@ -84,3 +84,40 @@ var marioBlisS = new Mario("BlisS"); */
 
 //el metodo draw se heredo de la clase Mario
 //marioPerez.draw(); 
+
+
+//Fourth iteration
+class Background{
+  constructor(){
+      this.x = 0
+      this.y = 0
+      this.width = canvas.width
+      this.height = canvas.height
+      this.imagen = new Image()
+      this.imagen.src = 'https://bit.ly/2TQwFIY'
+  }
+  
+  draw(){
+     // restamos en x para moverlo
+     this.x--;
+     // en caso de alcanzar el final de la imagen reseteamos x
+     if(this.x < -canvas.width) this.x = 0;
+     ctx.drawImage(this.imagen,this.x,this.y,this.width,this.height); 
+   // dibujamos una segunda imagen al final de la primera
+    ctx.drawImage(this.imagen,this.x + this.width,this.y,this.width,this.height); 
+  }
+}
+
+var fondo = new Background();
+var marioPerez = new Mario("Perez");
+
+var frames = 0;
+setInterval(function(){
+    //sumamos cada cuadro que dibujamos:
+    frames++;
+    //borramos el canvas
+    ctx.clearRect(0,0,256,256);
+    //dibujamos a mario
+    fondo.draw()
+    marioPerez.draw()
+},1000/60 );
