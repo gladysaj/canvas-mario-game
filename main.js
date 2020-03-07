@@ -1,3 +1,4 @@
+
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
@@ -54,8 +55,8 @@ class Mario{
       this.imagen = this.imagen1
       this.x = 10;
       this.y = 295;
-      this.width = 30;
-      this.height = 40;
+      this.width = 60;
+      this.height = 80;
   }
   
   draw(){
@@ -144,3 +145,61 @@ addEventListener('keydown', function(event){
       marioPerez.y -= 80;
   }
 })
+
+//Generate enemies
+//clases
+
+class Enemy{
+  constructor(){
+  //de principio el enemigo aparece fuera del canvas
+      this.x = canvas.width;
+      //el y del enemigo es el mismo de mario
+      this.y = 295;
+      this.width = 20;
+      this.height = 40;
+      this.image = new Image();
+      this.image.src = "https://bit.ly/2BAISL4";
+  }
+
+  draw(){
+      //el y del enemigo es el mismo de mario
+      if(frames % 10) this.x -= 5;
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  }
+}
+
+/*function generateEnemies() {
+  if(frames % 100 == 0 || frames % 60 == 0 || frames % 170 == 0){
+  //aquí crearemos a los enemigos
+  }
+} */
+
+var enemies = [];
+
+function generateEnemies() {
+    if(frames % 100 == 0 || frames % 60 == 0 || frames % 170 == 0){
+        // creamos una instancia de Enemy y la agregamos aun arreglo
+        var enemy = new Enemy
+        enemies.push(enemy);
+    }
+}
+
+function drawingEnemies(){
+  enemies.forEach(function(enemy){
+      enemy.draw()
+      // Checaremos colisiones más adelante
+  })
+}
+
+setInterval(function(){
+  // sumamos cada cuadro que dibujamos
+  frames++
+  // borramos el canvas
+  ctx.clearRect(0,0,256,256);
+  // Dibujamos a mario y el background
+  fondo.draw();
+  marioPerez.draw();
+  // Generamos enemigos
+  generateEnemies();
+  drawingEnemies();
+}, 1000/60)
