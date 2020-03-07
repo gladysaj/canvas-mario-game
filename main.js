@@ -13,3 +13,56 @@ imagen.onload = function(){
     ctx.drawImage(imagen, 0,0,80,100);
 
 }
+
+/*Syntaxis constructor
+
+class David{
+  constructor(variable){
+      this.variable = variable;
+  }
+} */
+
+/*Atributte
+
+// sin constructor
+class Bliss{
+  variable = 'dato';
+}
+
+// con constructor
+class Bliss{
+ constructor(dato){
+     this.variable = data;
+ }
+} */
+
+/* Method
+class Bliss{
+     draw(){
+         //lo que sea que tu funcion haga
+     }
+} */
+
+
+class Mario{
+  constructor(apellido){
+      this.apellido = apellido
+  }
+  
+  draw(){
+      ctx.drawImage(imagen, 0,0,80,100)
+  }
+}
+
+var marioPerez = new Mario("Perez");
+
+//Instancia
+
+/*
+var marioPerez = new Mario("Perez");
+var marioLopez = new Mario("Lopez");
+var marioZavala = new Mario("Zavala");
+var marioBlisS = new Mario("BlisS"); */
+
+//el metodo draw se heredo de la clase Mario
+//marioPerez.draw(); 
