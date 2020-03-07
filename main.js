@@ -52,15 +52,30 @@ class Mario{
       this.imagen2 = new Image ()
       this.imagen2.src = "https://bit.ly/2L3ikoe"
       this.imagen = this.imagen1
+      this.x = 10;
+      this.y = 295;
+      this.width = 30;
+      this.height = 40;
   }
   
   draw(){
+    if(this.y < 295) this.y += 4;
+    if(frames % 10 === 0){
+         this.imagen = this.imagen == this.imagen1 ? this.imagen2 : this.imagen1;
+    }
+    ctx.drawImage(this.imagen, this.x, this.y, this.width,this.height);
+}
+}
+
+
+
+  /*draw(){
     if(frames % 10  === 0){
       this.imagen = this.imagen == this.imagen1 ? this.imagen2 : this.imagen1;
     }
       ctx.drawImage(this.imagen, 0,0,80,100)
   }
-}
+} */
 
 var marioPerez = new Mario("Perez");
 
@@ -121,3 +136,11 @@ setInterval(function(){
     fondo.draw()
     marioPerez.draw()
 },1000/60 );
+
+// Event listeners
+
+addEventListener('keydown', function(event){
+  if(event.keyCode === 32){
+      marioPerez.y -= 80;
+  }
+})
